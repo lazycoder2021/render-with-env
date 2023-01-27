@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <form>
+        <input type="text" class="email"  placeholder="email..."/>
+        <input type="text" class="pass"  placeholder="password..."/>
+        <input type="submit"/>
+    </form>
+
+    <script>
+
+
+        document.querySelector('form').addEventListener('submit', function (e) {
+            e.preventDefault(); 
+            fetch('https://render-with-env.onrender.com/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json', 
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: document.querySelector('.email').value, 
+                    password: document.querySelector('.pass').value,
+                })
+            }).then((res) => {
+                return res.json()
+            }).then((data) => {
+                console.log(data)
+            })
+        })
+    </script>
+
+</body>
+</html>
